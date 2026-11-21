@@ -56,3 +56,14 @@ pipeline {
         }
     }
 }
+
+stage('Automated Tests') {
+    steps {
+        echo 'Running API Automated Tests...'
+
+        sh '''
+            python3 --version
+            python3 -m unittest discover -s tests -v
+        '''
+    }
+}
