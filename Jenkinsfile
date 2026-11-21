@@ -19,6 +19,13 @@ pipeline {
             }
         }
 
+        stage('Prepare Environment') {
+            steps {
+                echo 'Preparing CI environment...'
+                sh 'cp .env.example .env'
+            }
+        }
+
         stage('Validate Docker Compose') {
             steps {
                 echo 'Validating Docker Compose configuration...'
@@ -42,6 +49,10 @@ pipeline {
 
         failure {
             echo 'Pipeline failed. Check console output.'
+        }
+
+        always {
+            echo 'Pipeline execution completed.'
         }
     }
 }
